@@ -2,14 +2,19 @@ name: Build
 
 on:
   push:
-    branches:
-      - "master"
-      - "test"
+  schedule:
+    - cron: "0 20 * * *" # = CST 4:00
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container: archlinux
+
+    strategy:
+      matrix:
+        pkgs:
+          - miniconda3
+          - fcitx-sogoupinyin
 
     steps:
       - name: Checkout
@@ -19,13 +24,8 @@ jobs:
         run: bash prepare.sh
 
       - name: Build packages
-        run: |
-          sudo -u builduser aur sync miniconda3 --no-view --no-confirm --rm-deps
-          sudo -u builduser aur sync fcitx-sogoupinyin --no-view --no-confirm --rm-deps
+        run: sudo -u builduser aur sync ${{ matrix.pkgs }} --no-view --no-confirm --rm-deps
 
       - name: Check
         run: |
-          pwd
           ls -aR /home/builduser/localrepo
-          cat /etc/pacman.conf
-          cat /etc/makepkg.conf
