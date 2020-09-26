@@ -30,3 +30,5 @@ EOF
 sudo -u builduser mkdir /home/builduser/localrepo
 sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
 pacman -Sy
+
+cat /home/builduser/makepkg.conf >> /etc/makepkg.conf
