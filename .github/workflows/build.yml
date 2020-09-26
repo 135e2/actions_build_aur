@@ -9,23 +9,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build arch container
-        run: |
-          docker build -t aurutils .
-          docker run -ti --rm aurutils
+      - name: Setup build environmnet
+        run: bash prepare.sh
 
       - name: Build packages
-        run: aur sync miniconda --no-view --no-confirm --rm-deps
+        run: sudo -u builduser aur sync miniconda --no-view --no-confirm --rm-deps
 
       - name: Check
         run: |
-          su - builduser
-          ls -R localrepo
+          pwd
+          ls -R /home/builduser/localrepo
           cat /etc/pacman.conf
           cat /etc/makepkg.conf
