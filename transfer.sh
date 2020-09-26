@@ -1,11 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
-# Setup ssh files
-mkdir ~/.ssh
-echo "$SSH_KEY" > ~/.ssh/id_rsa
-echo "$SSH_CONFIG" > ~/.ssh/config
-
-# Use rsync to transfer
 pacman -S rsync openssh --noconfirm --needed &> /dev/null
-rsync -av /home/builduser/localrepo/ host:aur/x86_64
+echo "$SSH_KEY" > ssh_key
+
+rsync -av --delete -e "ssh -i ./ssh_key -p $SSH_PORT" \
+    /home/builduser/localrepo/ "$REMOTE_REPO"
