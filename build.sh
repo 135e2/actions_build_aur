@@ -1,9 +1,13 @@
 #!/bin/bash
 set -euxo pipefail
 
-__my_pkgs=(
-    miniconda3
+my_pkgs=(
+    amazon-corretto-8
+    aurutils
+    colorpicker
     fcitx-sogoupinyin
+    jetbrains-toolbox
+    miniconda3
 )
 
-sudo -u builduser aur sync "${__my_pkgs[@]}" --no-view --no-confirm --rm-deps
+sudo -u builduser aur sync "${my_pkgs[@]}" --no-view --no-confirm --rm-deps
