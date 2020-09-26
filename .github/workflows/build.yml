@@ -1,0 +1,51 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - "master"
+      - "test"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: archlinux
+    steps:
+      - name: Create non-root user for makepkg
+        run: |
+          useradd builduser -m
+          passwd -d builduser
+          echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
+          su - builduser
+
+      - name: Install aurutils
+        run: |
+          sudo pacman -Sy
+          sudo pacman -S base-devel --needed --noconfirm --noprogressbar
+          curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz
+          tar -xf aurutils.tar.gz
+          pushd aurutils
+          makepkg -sci
+          popd
+
+      - name: Set up build environment
+        run: |
+          cat << EOF | sudo tee -a /etc/pacman.conf
+          [est]
+          SigLevel = Optional TrustAll
+          Server = file:///home/builduser/localrepo
+          EOF
+
+          mkdir localrepo
+          repo-add localrepo/est.db.tar.zst
+          sudo pacman -Syu
+
+      - name: Build packages
+        run: |
+          aur sync miniconda --no-view --no-confirm --rm-deps
+
+      - name: Check
+        run: |
+          ls -R localrepo
+          cat /etc/pacman.conf
+          cat /etc/makepkg.conf
