@@ -26,6 +26,6 @@ jobs:
       - name: Check
         run: |
           pwd
-          ls -R /home/builduser/localrepo
+          ls -aR /home/builduser/localrepo
           cat /etc/pacman.conf
           cat /etc/makepkg.conf

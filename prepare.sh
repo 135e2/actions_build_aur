@@ -12,10 +12,11 @@ passwd -d builduser
 echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
 
 # Install aurutils
+cp * /home/builduser
+cd ~ # default working directory is /__w/aur-action/aur-action
 curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz
 tar -xf aurutils.tar.gz
-mkdir -p /__w/aur-action/aur-action/aurutils
-chmod a+w /__w/aur-action/aur-action/aurutils
+chmod a+w aurutils # for builduser
 pushd aurutils
 sudo -u builduser makepkg -sci --needed --noconfirm --noprogressbar
 popd
