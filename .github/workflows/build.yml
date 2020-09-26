@@ -10,21 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux
 
-    strategy:
-      matrix:
-        pkgs:
-          - miniconda3
-          - fcitx-sogoupinyin
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Setup build environmnet
-        run: bash prepare.sh
+        run: ./prepare.sh
 
       - name: Build packages
-        run: sudo -u builduser aur sync ${{ matrix.pkgs }} --no-view --no-confirm --rm-deps
+        run: ./build.sh
 
       - name: Check
         run: |
