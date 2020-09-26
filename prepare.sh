@@ -27,6 +27,5 @@ SigLevel = Optional TrustAll
 Server = file:///home/builduser/localrepo
 EOF
 sudo -u builduser mkdir /home/builduser/localrepo
-chmod a+wr /home/builduser/localrepo
-repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
+sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
 pacman -Sy
