@@ -19,18 +19,25 @@ jobs:
           useradd builduser -m
           passwd -d builduser
           echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
-          su - builduser
+          echo 'root ALL=(ALL) ALL' >> /etc/sudoers
+          whoami
+          sudo --login --user builduser
+          whoami
+
 
       - name: Install aurutils
         run: |
+          whoami
+          su - builduser
+          whoami
           curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz
           tar -xf aurutils.tar.gz
           pushd aurutils
           makepkg -sci
-          popd
 
       - name: Set up build environment
         run: |
+          su - builduser
           cat << EOF | sudo tee -a /etc/pacman.conf
           [est]
           SigLevel = Optional TrustAll
@@ -43,10 +50,12 @@ jobs:
 
       - name: Build packages
         run: |
+          su - builduser
           aur sync miniconda --no-view --no-confirm --rm-deps
 
       - name: Check
         run: |
+          su - builduser
           ls -R localrepo
           cat /etc/pacman.conf
           cat /etc/makepkg.conf
