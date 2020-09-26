@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux
     steps:
-      - name: Create non-root user for makepkg
+      - name: Setup environment for aurutils
         run: |
+          pacman -Sy
+          pacman -S base-devel --needed --noconfirm --noprogressbar
+
           useradd builduser -m
           passwd -d builduser
           echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
@@ -20,8 +23,6 @@ jobs:
 
       - name: Install aurutils
         run: |
-          sudo pacman -Sy
-          sudo pacman -S base-devel --needed --noconfirm --noprogressbar
           curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz
           tar -xf aurutils.tar.gz
           pushd aurutils
