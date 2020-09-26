@@ -19,7 +19,9 @@ jobs:
         run: bash prepare.sh
 
       - name: Build packages
-        run: sudo -u builduser aur sync miniconda --no-view --no-confirm --rm-deps
+        run: |
+          sudo -u builduser aur sync miniconda3 --no-view --no-confirm --rm-deps
+          sudo -u builduser aur sync fcitx-sogoupinyin --no-view --no-confirm --rm-deps
 
       - name: Check
         run: |
