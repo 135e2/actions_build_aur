@@ -3,11 +3,14 @@ set -euxo pipefail
 
 my_pkgs=(
     amazon-corretto-8
-    # aurutils
-    # colorpicker
-    # fcitx-sogoupinyin
-    # jetbrains-toolbox
-    # miniconda3
+    aurutils
+    colorpicker
+    fcitx-sogoupinyin
+    jetbrains-toolbox
+    icdiff
+    miniconda3
+    pandoc-bin
+    # ungoogled-chromium
 )
 
 # Dirty trick to do alias makepkg='makepkg --skippgpcheck'

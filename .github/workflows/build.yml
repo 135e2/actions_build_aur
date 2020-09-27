@@ -11,7 +11,7 @@ jobs:
     container: archlinux
 
     steps:
-      - name: Checkout
+      - name: Checkout $GITHUB_WORKSPACE
         uses: actions/checkout@v2
 
       - name: Setup build environmnet
@@ -20,9 +20,8 @@ jobs:
       - name: Build packages
         run: ./build.sh
 
-      - name: Check
-        run: |
-          ls -aR /home/builduser/localrepo
+      - name: List packages
+        run: ls -R /home/builduser/localrepo
 
       - name: Transfer packages
         env:
