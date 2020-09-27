@@ -21,7 +21,7 @@ jobs:
         run: ./build.sh
 
       - name: List packages
-        run: ls -R /home/builduser/localrepo
+        run: ls -1 /home/builduser/localrepo
 
       - name: Transfer packages
         env:
