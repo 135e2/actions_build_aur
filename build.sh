@@ -3,17 +3,21 @@ set -euxo pipefail
 
 my_pkgs=(
     amazon-corretto-8
+    aura-bin
     aurutils
     colorpicker
     fcitx-sogoupinyin
-    jetbrains-toolbox
-    haskell-ide-engine 
+    gccemacs
+    haskell-ide-engine
     icdiff
+    jetbrains-toolbox
     miniconda3
+    notcurses
     pandoc-bin
     stack-static
     # taffybar
     # ungoogled-chromium
+    yay-bin
 )
 
 # Setup makepkg conf
@@ -26,7 +30,7 @@ for my_pkg in "${my_pkgs[@]}"; do
     if [ -e "custom/$my_pkg.sh" ]; then
         "./custom/$my_pkg.sh"
     else
-        sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm --rm-deps
+        sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm # --rm-deps
     fi
     echo "<<<<<<<<< $my_pkg built, $SECONDS seconds used."
 done
