@@ -24,6 +24,9 @@ my_pkgs=(
 cat makepkg.conf >>/etc/makepkg.conf
 sed 's/SKIPPGPCHECK=0/SKIPPGPCHECK=1/' /usr/bin/makepkg -i
 
+H=$(pwd)
+export H
+
 for my_pkg in "${my_pkgs[@]}"; do
     echo ">>>>>>>>> building $my_pkg"
     SECONDS=0
