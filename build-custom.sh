@@ -7,7 +7,7 @@ if [[ build == "$1" ]]; then
     if [[ "" != "$aurdep" ]]; then
 	sudo -u builduser aur sync "$aurdep" --no-view --no-confirm
     fi
-    sudo -u builduser aur build -- -sci --needed --noconfirm --noprogressbar
+    sudo -u builduser aur build -- -sci --needed --noconfirm --noprogressbar --skipchecksums
     popd
 else
     export CURRENT_PKG="$1"

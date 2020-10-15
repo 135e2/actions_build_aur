@@ -5,14 +5,17 @@ my_pkgs=(
     amazon-corretto-8
     aura-bin
     aurutils
+    brittany
     colorpicker
+    fake-ms-fonts
     fcitx-sogoupinyin
-    gccemacs
-    haskell-ide-engine
+    floskell
+    # gccemacs
+    # haskell-ide-engine
     icdiff
     jetbrains-toolbox
     miniconda3
-    notcurses
+    # notcurses
     pandoc-bin
     stack-static
     # taffybar
