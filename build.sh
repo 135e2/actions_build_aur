@@ -5,7 +5,7 @@ my_pkgs=(
     amazon-corretto-8
     aura-bin
     aurutils
-    brittany
+    # brittany
     colorpicker
     fake-ms-fonts
     fcitx-sogoupinyin
@@ -17,6 +17,7 @@ my_pkgs=(
     miniconda3
     # notcurses
     pandoc-bin
+    picom-jonaburg-git
     stack-static
     # taffybar
     # ungoogled-chromium
