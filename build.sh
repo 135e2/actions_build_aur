@@ -9,15 +9,18 @@ my_pkgs=(
     # brittany
     chisel
     colorpicker
+    cppman
     fake-ms-fonts
     fcitx-sogoupinyin
     floskell
+    fpp
     # gccemacs
     # haskell-ide-engine
     icdiff
     jetbrains-toolbox
     miniconda3
     # notcurses
+    onedrive-abraunegg
     pandoc-bin
     picom-jonaburg-git
     # plan9port-git
