@@ -12,8 +12,10 @@ passwd -d builduser
 echo 'builduser ALL=(ALL) ALL' >>/etc/sudoers
 
 # Fix mkdir: cannot create directory ‘/run/user/1000’: Permission denied
-mkdir -p /run/user/1000
-chown -R builduser /run/user/1000
+# https://github.com/AladW/aurutils/commit/5341c059736d3eff59daea5cb52b7d35c98d0824
+xdg_runtime_dir="/run/user/$(id -u builduser)"
+mkdir -p "$xdg_runtime_dir"
+chown -R builduser "$xdg_runtime_dir"
 
 # Install aurutils
 curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz

@@ -11,7 +11,7 @@ if [[ build == "$1" ]]; then
     popd
 else
     export CURRENT_PKG="$1"
-    aur fetch -t "$CURRENT_PKG"
+    aur fetch "$CURRENT_PKG"
     chmod a+w "$CURRENT_PKG" # for builduser
     pushd "$CURRENT_PKG"
 fi
