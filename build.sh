@@ -10,6 +10,7 @@ my_pkgs=(
     chisel
     colorpicker
     cppman
+    espresso-logic
     fake-ms-fonts
     fcitx-sogoupinyin
     floskell
