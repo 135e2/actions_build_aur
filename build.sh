@@ -12,7 +12,6 @@ my_pkgs=(
     cppman
     espresso-logic
     fake-ms-fonts
-    fcitx-sogoupinyin
     floskell
     fpp
     # gccemacs
@@ -27,6 +26,7 @@ my_pkgs=(
     # plan9port-git
     scalafmt-native-bin
     stack-static
+    verible-git
     # taffybar
     # ungoogled-chromium
     yay-bin
