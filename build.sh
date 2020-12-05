@@ -18,6 +18,7 @@ my_pkgs=(
     # haskell-ide-engine
     icdiff
     jetbrains-toolbox
+    metals
     miniconda3
     # notcurses
     onedrive-abraunegg
