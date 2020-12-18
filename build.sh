@@ -2,23 +2,14 @@
 set -euxo pipefail
 
 my_pkgs=(
-    amazon-corretto-8
     aura-bin
     aurutils
     bitwise
-    # brittany
-    chisel
     colorpicker
-    cppman
     espresso-logic
-    fake-ms-fonts
     floskell
     fpp
-    # gccemacs
-    # haskell-ide-engine
     icdiff
-    jetbrains-toolbox
-    metals
     miniconda3
     # notcurses
     onedrive-abraunegg
@@ -26,10 +17,8 @@ my_pkgs=(
     picom-jonaburg-git
     # plan9port-git
     scalafmt-native-bin
-    stack-static
     verible-git
     # taffybar
-    # ungoogled-chromium
     yay-bin
 )
 
