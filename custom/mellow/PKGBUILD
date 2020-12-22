@@ -1,0 +1,17 @@
+pkgname=mellow
+pkgver=0.1.22
+pkgrel=1
+pkgdesc="Mellow is a rule-based global transparent proxy client for Windows, macOS and Linux. Also a Proxifier alternative."
+arch=('x86_64')
+url="https://github.com/mellow-io/mellow"
+license=('unkown')
+provides=('mellow')
+conflicts=('mellow')
+options=(!strip)
+source=("https://github.com/mellow-io/mellow/releases/download/v${pkgver}/Mellow-${pkgver}.AppImage")
+sha256sums=('SKIP')
+
+package() {
+  install -Dm755 "${srcdir}/Mellow-${pkgver}.AppImage" "${pkgdir}/usr/bin/${pkgname}"
+}
+

@@ -10,14 +10,13 @@ my_pkgs=(
     floskell
     fpp
     icdiff
-    miniconda3
+    mellow
+    # miniconda3
     # notcurses
-    onedrive-abraunegg
-    pandoc-bin
     picom-jonaburg-git
     # plan9port-git
     scalafmt-native-bin
-    verible-git
+    # verible-git
     # taffybar
     yay-bin
 )
@@ -34,6 +33,9 @@ for my_pkg in "${my_pkgs[@]}"; do
     SECONDS=0
     if [ -e "custom/$my_pkg.sh" ]; then
         "./custom/$my_pkg.sh"
+    elif [ -d "custom/$my_pkg" ]; then
+	. "$H/custom.sh" cd "$my_pkg"
+	. "$H/custom.sh" build
     else
         sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm # --rm-deps
     fi
