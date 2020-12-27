@@ -10,8 +10,10 @@ my_pkgs=(
     floskell
     fpp
     icdiff
+    magic-wormhole
     mellow
     # miniconda3
+    notion-enhancer
     # notcurses
     picom-jonaburg-git
     # plan9port-git
