@@ -23,7 +23,7 @@ jobs:
     - name: Import linux kernel GPG key
       run: gpg --keyserver keys.gnupg.net --recv-keys 38DBBDC86092693E
 
-    - uses: DuckSoft/build-aur-action@master
+    - uses: 135e2/build-aur-action@1.0
       with:
         repo-name: ${{ matrix.repos }}
     
