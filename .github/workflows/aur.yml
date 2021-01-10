@@ -21,7 +21,7 @@ jobs:
     
     steps:
     - name: Import linux kernel GPG key
-      run: gpg --recv-keys 38DBBDC86092693E
+      run: gpg --keyserver pgp.mit.edu --recv-keys 38DBBDC86092693E
 
     - uses: DuckSoft/build-aur-action@master
       with:
