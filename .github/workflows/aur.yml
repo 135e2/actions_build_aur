@@ -3,8 +3,11 @@ name: BUILD
 on:
 #  schedule:
 #    - cron:  '1 */6 * * *'
-  watch:
-    types: [started]
+#  watch:
+#    types: [started]
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build:
