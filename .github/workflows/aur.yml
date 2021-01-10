@@ -20,9 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-     - name: Import linux kernel GPG key
-         run: |
-         gpg --recv-keys 38DBBDC86092693E
+    - name: Import linux kernel GPG key
+      run: gpg --recv-keys 38DBBDC86092693E
+
     - uses: DuckSoft/build-aur-action@master
       with:
         repo-name: ${{ matrix.repos }}
