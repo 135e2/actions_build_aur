@@ -1,0 +1,36 @@
+name: BUILD
+
+on:
+#  schedule:
+#    - cron:  '1 */6 * * *'
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        repos: [linux-ck,linux-lqx]
+
+      fail-fast: false
+      
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: DuckSoft/build-aur-action@master
+      with:
+        repo-name: ${{ matrix.repos }}
+    
+    - uses: ncipollo/release-action@v1.7.3
+      with:
+        allowUpdates: true
+        tag: "packages"
+        artifacts: "./*/*.xz"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - uses: ncipollo/release-action@v1.7.3
+      with:
+        allowUpdates: true
+        tag: "packages"
+        artifacts: "./*/*.zst"
+        token: ${{ secrets.GITHUB_TOKEN }}
