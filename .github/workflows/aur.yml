@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        repos: [linux-ck,linux-lqx,linux-pf,linux-git]
+        repos: [linux-ck,linux-lqx,linux-git]
 
       fail-fast: false
       
