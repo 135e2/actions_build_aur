@@ -2,7 +2,7 @@ name: BUILD
 
 on:
   schedule:
-    - cron:  '0 10 * * *'
+    - cron:  '0 11 * * *'
 #  watch:
 #    types: [started]
 #  push:
@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        repos: [linux-ck,linux-lqx]
+        repos: [linux-ck,linux-lqx,linux-zen-git]
 
       fail-fast: false
       
