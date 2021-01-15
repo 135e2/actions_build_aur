@@ -7,7 +7,7 @@ on:
 #    types: [started]
   push:
     branches:
-      - 'main'
+      - 'aur'
 
 jobs:
   build:
