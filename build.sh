@@ -17,9 +17,10 @@ my_pkgs=(
     # notcurses
     picom-jonaburg-git
     # plan9port-git
+    riscv-sifive-elf-gcc
+    riscv64-unknown-elf-gcc
     scalafmt-native-bin
-    # verible-git
-    # taffybar
+    tabbed
     yay-bin
 )
 
