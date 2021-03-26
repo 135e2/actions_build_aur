@@ -10,17 +10,12 @@ my_pkgs=(
     floskell
     fpp
     icdiff
-    magic-wormhole
-    mellow
     # miniconda3
     notion-enhancer
     # notcurses
     picom-jonaburg-git
     # plan9port-git
-    riscv-sifive-elf-gcc
-    riscv64-unknown-elf-gcc
     scalafmt-native-bin
-    tabbed
     yay-bin
 )
 
