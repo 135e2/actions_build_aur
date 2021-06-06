@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-REPO=est
+REPO=135e2
 
 # Update system
 pacman -Syu base-devel --noconfirm --needed &>/dev/null

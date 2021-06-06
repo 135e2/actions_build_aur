@@ -28,7 +28,6 @@ jobs:
 
       - name: Transfer packages
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          REMOTE_REPO: ${{ secrets.REMOTE_REPO }}
+          RCLONE_CONFIG_URL: ${{ secrets.RCLONE_CONFIG_URL }}
+          #REMOTE_REPO: ${{ secrets.REMOTE_REPO }}
         run: ./transfer.sh

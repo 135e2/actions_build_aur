@@ -2,21 +2,7 @@
 set -euxo pipefail
 
 my_pkgs=(
-    aura-bin
-    aurutils
-    bitwise
-    colorpicker
-    espresso-logic
-    floskell
-    fpp
-    icdiff
-    # miniconda3
-    notion-enhancer
-    # notcurses
-    picom-jonaburg-git
-    # plan9port-git
-    scalafmt-native-bin
-    yay-bin
+	yay
 )
 
 # Setup makepkg conf
