@@ -13,14 +13,14 @@ jobs:
   build:
     strategy:
       matrix:
-        repos: [linux-ck,linux-lqx]
+        repos: [linux-lqx,yay,linux-xanmod]
 
       fail-fast: false
       
     runs-on: ubuntu-latest
     
     steps:
-    - uses: 135e2/build-aur-action@1.1
+    - uses: 135e2/build-aur-action@master
       with:
         repo-name: ${{ matrix.repos }}
     
