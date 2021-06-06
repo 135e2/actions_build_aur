@@ -22,7 +22,4 @@ jobs:
 
       - name: Commit & push changes
         run: |
-          git config --global user.name 135e2-bot
-          git config --global user.email bot135e2@gmail.com
-          git commit -am "Update submodules"
-          git push
+         bash ./commit-bot.sh 
