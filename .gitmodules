@@ -1,0 +1,3 @@
+[submodule "custom/yay"]
+	path = custom/yay
+	url = https://aur.archlinux.org/yay

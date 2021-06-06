@@ -3,8 +3,8 @@ set -euxo pipefail
 
 my_pkgs=(
 	yay
-	linux-xanmod
-	linux-lqx
+	#linux-xanmod
+	#linux-lqx
 )
 
 # Setup makepkg conf

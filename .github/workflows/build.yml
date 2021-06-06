@@ -16,9 +16,16 @@ jobs:
     steps:
       - name: Checkout $GITHUB_WORKSPACE
         uses: actions/checkout@v2
+        with:
+          repository: 135e2/actions_build_aur
 
       - name: Setup build environmnet
         run: ./prepare.sh
+        
+      - name: Checkout $GITHUB_WORKSPACE
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Build packages
         run: ./build.sh
