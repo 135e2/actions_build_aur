@@ -2,11 +2,8 @@ name: Build
 
 on:
   push:
-    branches-ignore:
-      - master
   schedule:
     - cron: "0 20 * * *" # = CST 4:00
-  workflow_dispatch:
 
 jobs:
   build:
