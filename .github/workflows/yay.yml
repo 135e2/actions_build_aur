@@ -3,6 +3,7 @@ name: Update submodules
 # Controls when the action will run.
 on:
   push:
+  workflow_dispatch:
   schedule:
     - cron: "50 19 * * *" # = CST 3:50
 
