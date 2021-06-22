@@ -27,6 +27,12 @@ jobs:
 
       - name: Build packages
         run: ./build.sh
+        
+      - name: Sign packages
+        env:
+          GPG_PRIVATE_KEY_URL: ${{ secrets.GPG_PRIVATE_KEY_URL }}
+          GPG_PRIVATE_KEY_PASSWORD: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD}}
+        run: ./sign.sh
 
       - name: List packages
         run: ls -1 /home/builduser/localrepo

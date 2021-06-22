@@ -33,5 +33,15 @@ Server = file:///home/builduser/localrepo
 EOF
 sudo -u builduser mkdir /home/builduser/localrepo
 sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
+
+#Install git
 pacman -Sy
 pacman -S git --noconfirm --needed
+
+#[WIP]Init GPG
+GPGKEY=5443E4D4C99F250F
+rm -rf /etc/pacman.d/gnupg
+pacman-key --init
+pacman-key --populate archlinux
+pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+pacman-key --lsign-key $GPGKEY
