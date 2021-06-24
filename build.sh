@@ -23,7 +23,7 @@ for my_pkg in "${my_pkgs[@]}"; do
 	. "$H/custom.sh" cd "$my_pkg"
 	. "$H/custom.sh" build
     else
-        sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm --sign # --rm-deps
+        sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm #--sign # --rm-deps
     fi
     echo "<<<<<<<<< $my_pkg built, $SECONDS seconds used."
 done
