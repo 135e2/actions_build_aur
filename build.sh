@@ -2,10 +2,10 @@
 set -euxo pipefail
 
 my_pkgs=(
-	yay
-	linux-xanmod
-	linux-xanmod-headers
-	#linux-lqx
+    yay
+    linux-xanmod
+    linux-xanmod-headers
+    #linux-lqx
 )
 
 # Setup makepkg conf
@@ -21,8 +21,8 @@ for my_pkg in "${my_pkgs[@]}"; do
     if [ -e "custom/$my_pkg.sh" ]; then
         "./custom/$my_pkg.sh"
     elif [ -d "custom/$my_pkg" ]; then
-	. "$H/custom.sh" cd "$my_pkg"
-	. "$H/custom.sh" build
+        . "$H/custom.sh" cd "$my_pkg"
+        . "$H/custom.sh" build
     else
         sudo -u builduser aur sync "$my_pkg" --no-view --no-confirm #--sign # --rm-deps
     fi

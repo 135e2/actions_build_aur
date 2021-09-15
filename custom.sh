@@ -12,10 +12,9 @@ elif [[ fetch == "$1" ]]; then
     aurdep=$(aur depends "$CURRENT_PKG" | grep -v "$CURRENT_PKG") || true
     unset CURRENT_PKG
     if [[ "" != "$aurdep" ]]; then
-	sudo -u builduser aur sync "$aurdep" --no-view --no-confirm --sign
+        sudo -u builduser aur sync "$aurdep" --no-view --no-confirm --sign
     fi
 elif [[ cd == "$1" ]]; then
     chmod a+w "custom/$2"
     pushd "custom/$2"
 fi
-
