@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+# set -euxo pipefail
 
 REPO=135e2
 
@@ -44,4 +44,7 @@ rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
 pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+while [ $? -ne 0 ]; do
+    pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+done
 pacman-key --lsign-key $GPGKEY
