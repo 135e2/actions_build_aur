@@ -3,6 +3,7 @@ set -euxo pipefail
 
 my_pkgs=(
     yay
+    paru
     linux-xanmod
     linux-xanmod-headers
     #linux-lqx
