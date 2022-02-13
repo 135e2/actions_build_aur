@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux
 
+    env:
+      REPO_NAME: '135e2'
+      GPG_KEY: 5443E4D4C99F250F
+
     steps:
       - name: Checkout $GITHUB_WORKSPACE
         uses: actions/checkout@v2
@@ -20,10 +24,13 @@ jobs:
       - name: Setup build environmnet
         run: ./prepare.sh
         
-      - name: Checkout $GITHUB_WORKSPACE
+      - name: Checkout $GITHUB_WORKSPACE (with submodules)
         uses: actions/checkout@v2
         with:
           submodules: recursive
+
+      - name: Check environment
+        run: export
 
       - name: Build packages
         run: ./build.sh

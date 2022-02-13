@@ -1,8 +1,6 @@
 #!/bin/bash
 # set -euxo pipefail
 
-REPO=135e2
-
 # Update system
 pacman -Syu base-devel --noconfirm --needed &>/dev/null
 
@@ -27,24 +25,24 @@ popd
 
 # Create local repository
 cat <<EOF >>/etc/pacman.conf
-[$REPO]
+[$REPO_NAME]
 SigLevel = Optional TrustAll
 Server = file:///home/builduser/localrepo
 EOF
 sudo -u builduser mkdir /home/builduser/localrepo
-sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
+sudo -u builduser repo-add "/home/builduser/localrepo/${REPO_NAME}.db.tar.zst"
 
 #Install git
 pacman -Sy
 pacman -S git --noconfirm --needed
 
 #[WIP]Init GPG
-GPGKEY=5443E4D4C99F250F
 rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+pacman-key --recv-keys "$GPG_KEY" --keyserver keys.openpgp.org
+# shellcheck disable=SC2181
 while [ $? -ne 0 ]; do
-    pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+    pacman-key --recv-keys "$GPG_KEY" --keyserver keys.openpgp.org
 done
-pacman-key --lsign-key $GPGKEY
+pacman-key --lsign-key "$GPG_KEY"
