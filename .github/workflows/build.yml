@@ -74,15 +74,20 @@ jobs:
         with:
           path: /home/builduser/localrepo
 
+      - name: Move downloaded files
+        run: |
+          cd /home/builduse/localrepo
+          mv -v ./artifacts/* ./
+          rmdir ./artifacts
+
       - name: Add and sign packages
         env:
           GPG_PRIVATE_KEY_URL: ${{ secrets.GPG_PRIVATE_KEY_URL }}
           GPG_PRIVATE_KEY_PASSWORD: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD}}
         run: ./sign.sh
 
-      - name: List packages built
+      - name: List packages in repo dir
         run: ls -1 /home/builduser/localrepo
-
 
       - name: Transfer packages
         env:
