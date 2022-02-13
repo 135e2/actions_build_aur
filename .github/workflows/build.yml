@@ -8,8 +8,13 @@ on:
 
 jobs:
   build:
+    name: Build AUR packages
     runs-on: ubuntu-latest
     container: archlinux
+
+    strategy:
+      matrix:
+        packages: [yay, paru]
 
     env:
       REPO_NAME: '135e2'
@@ -34,15 +39,49 @@ jobs:
 
       - name: Build packages
         run: ./build.sh
-        
-      - name: Sign packages
+        env:
+          PACKAGE_NAME: ${{ matrix.packages }}
+
+      - name: List packages built
+        run: ls -1 /home/builduser/localrepo
+
+      - name: Upload packages to artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: /home/builduser/localrepo/${{ matrix.packages }}*
+
+  publish:
+    name: Publish packages to repo
+    runs-on: ubuntu-latest
+    container: archlinux
+
+    env:
+      REPO_NAME: '135e2'
+      GPG_KEY: 5443E4D4C99F250F
+
+    steps:
+      - name: Checkout $GITHUB_WORKSPACE
+        uses: actions/checkout@v2
+        with:
+          repository: 135e2/actions_build_aur
+
+      - name: Setup repo environmnet
+        run: ./prepare.sh
+
+      - name: Download artifacts built
+        uses: actions/download-artifact@v2
+        with:
+          path: /home/builduser/localrepo
+
+      - name: Add and sign packages
         env:
           GPG_PRIVATE_KEY_URL: ${{ secrets.GPG_PRIVATE_KEY_URL }}
           GPG_PRIVATE_KEY_PASSWORD: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD}}
         run: ./sign.sh
 
-      - name: List packages
+      - name: List packages built
         run: ls -1 /home/builduser/localrepo
+
 
       - name: Transfer packages
         env:
