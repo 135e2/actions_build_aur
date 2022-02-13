@@ -54,6 +54,7 @@ jobs:
     name: Publish packages to repo
     runs-on: ubuntu-latest
     container: archlinux
+    needs: build
 
     env:
       REPO_NAME: '135e2'
