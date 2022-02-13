@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        packages: [yay, paru]
+        packages: [yay]
 
     env:
       REPO_NAME: '135e2'
@@ -76,9 +76,9 @@ jobs:
 
       - name: Move downloaded files
         run: |
-          cd /home/builduse/localrepo
-          mv -v ./artifacts/* ./
-          rmdir ./artifacts
+          cd /home/builduser/localrepo
+          mv -v ./artifact/* ./
+          rmdir ./artifact
 
       - name: Add and sign packages
         env:
