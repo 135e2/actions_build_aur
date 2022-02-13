@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+
 gpg --keyserver keys.openpgp.org --recv-keys "$GPG_KEY"
 curl -o private_key "$GPG_PRIVATE_KEY_URL"
 gpg --import --pinentry-mode loopback --batch --passphrase "$GPG_PRIVATE_KEY_PASSWORD" private_key
