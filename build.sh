@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 my_pkgs=(
-    yay
+    #yay
     paru
     linux-xanmod-anbox
     linux-xanmod-anbox-headers
