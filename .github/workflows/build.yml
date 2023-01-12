@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "0 20 * * *" # = CST 4:00
+    - cron: "0 20 * * 0,2,4,6" # = CST 4:00 Sun, Tue, Thu and Sat.
 
 jobs:
   build:
