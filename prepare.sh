@@ -39,7 +39,7 @@ pacman -Sy
 pacman -S git --noconfirm --needed
 
 #[WIP]Init GPG
-GPGKEY=5443E4D4C99F250F
+GPGKEY=0F43EA08654E5BCA
 rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
