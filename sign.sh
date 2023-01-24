@@ -1,4 +1,4 @@
-gpg --keyserver keys.openpgp.org --recv-keys 0F43EA08654E5BCA 
+gpg --keyserver keyserver.ubuntu.com --recv-keys 0F43EA08654E5BCA 
 curl -o private_key "$GPG_PRIVATE_KEY_URL"
 gpg --import --pinentry-mode loopback --batch --passphrase "$GPG_PRIVATE_KEY_PASSWORD" private_key
 pushd /home/builduser/localrepo

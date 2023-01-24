@@ -43,8 +43,8 @@ GPGKEY=0F43EA08654E5BCA
 rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+pacman-key --recv-keys $GPGKEY --keyserver keyserver.ubuntu.com
 while [ $? -ne 0 ]; do
-    pacman-key --recv-keys $GPGKEY --keyserver keys.openpgp.org
+    pacman-key --recv-keys $GPGKEY --keyserver keyserver.ubuntu.com
 done
 pacman-key --lsign-key $GPGKEY
