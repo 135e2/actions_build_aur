@@ -4,6 +4,7 @@ set -euxo pipefail
 my_pkgs=(
     yay
     paru
+    implay
     linux-xanmod-anbox
     linux-xanmod-anbox-headers
     #linux-lqx
