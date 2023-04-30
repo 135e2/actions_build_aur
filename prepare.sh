@@ -1,5 +1,4 @@
 #!/bin/bash
-# set -euxo pipefail
 # shellcheck disable=SC2164
 
 . utils/logging.sh
@@ -30,7 +29,7 @@ function prepare() {
     popd
 
     info "Creating local repository..."
-    printf "[%s]\nSigLevel = Optional TrustAll\nServer = file:///home/builduser/localrepo" "${REPO}" >> /etc/pacman.conf
+    printf "[%s]\nSigLevel = Optional TrustAll\nServer = file:///home/builduser/localrepo" "${REPO}" >>/etc/pacman.conf
     sudo -u builduser mkdir /home/builduser/localrepo
     sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
     # Refreshing repo is nedded

@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euxo pipefail
 
 function transfer() {
     cd /home/builduser

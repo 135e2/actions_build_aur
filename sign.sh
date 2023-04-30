@@ -1,8 +1,6 @@
 #!/bin/bash
 
 function sign() {
-    set +euo pipefail
-
     info "Fetching GPG key used for signing..."
     gpg --keyserver keyserver.ubuntu.com --recv-keys "$GPGKEY"
     curl -o private_key "$GPG_PRIVATE_KEY_URL"
@@ -14,7 +12,4 @@ function sign() {
         gpg --detach-sign --pinentry-mode loopback --batch --passphrase "$GPG_PRIVATE_KEY_PASSWORD" $files
     done
     popd
-
-    set -euo pipefail
-
 }
