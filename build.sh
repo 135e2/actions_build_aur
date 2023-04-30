@@ -10,6 +10,7 @@ my_pkgs=(
     linux-xanmod-anbox-headers
     #linux-lqx
 )
+TOTAL_SECONDS=0
 
 function build_package() {
     local pkg="$1"
@@ -28,7 +29,7 @@ function build_package() {
     local end_time
     end_time=$(date +%s)
     local SECONDS=$((end_time - start_time))
-    TOTAL_SECONDS+=SECONDS
+    TOTAL_SECONDS=$((TOTAL_SECONDS + SECONDS))
     info "<<<<<<<<< $pkg built, time used: $(time_parser $SECONDS)."
 }
 
@@ -39,7 +40,6 @@ function build() {
 
     H=$(pwd)
     export H
-    TOTAL_SECONDS=0
 
     for my_pkg in "${my_pkgs[@]}"; do
         build_package "$my_pkg"
