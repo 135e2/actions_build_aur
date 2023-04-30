@@ -1,5 +1,4 @@
 #!/bin/bash
-#shellcheck disable=SC2164
 
 function local_custom_build() {
     chmod a+w "custom/$1"

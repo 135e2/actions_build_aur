@@ -1,5 +1,4 @@
 #!/bin/bash
-# shellcheck disable=SC2164
 
 . utils/logging.sh
 
@@ -7,11 +6,11 @@ function prepare() {
     debug "REPO: ${REPO}\tGPGKEY: ${GPGKEY}"
 
     info "Doing a full system upgrade and installing base pkgs..."
-    pacman -Syu base-devel git rclone curl --noconfirm --needed &>/dev/null
+    pacman -Syu base-devel git rclone curl --noconfirm --needed &> /dev/null
     info "Creating a build user for makepkg..."
     useradd builduser -m
     passwd -d builduser
-    echo 'builduser ALL=(ALL) ALL' >>/etc/sudoers
+    echo 'builduser ALL=(ALL) ALL' >> /etc/sudoers
 
     # Fix mkdir: cannot create directory ‘/run/user/1000’: Permission denied
     # https://github.com/AladW/aurutils/commit/5341c059736d3eff59daea5cb52b7d35c98d0824
@@ -29,7 +28,7 @@ function prepare() {
     popd
 
     info "Creating local repository..."
-    printf "[%s]\nSigLevel = Optional TrustAll\nServer = file:///home/builduser/localrepo" "${REPO}" >>/etc/pacman.conf
+    printf "[%s]\nSigLevel = Optional TrustAll\nServer = file:///home/builduser/localrepo" "${REPO}" >> /etc/pacman.conf
     sudo -u builduser mkdir /home/builduser/localrepo
     sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
     # Refreshing repo is nedded
@@ -39,11 +38,11 @@ function prepare() {
     rm -rf /etc/pacman.d/gnupg
     pacman-key --init
     pacman-key --populate archlinux
-    pacman-key --recv-keys $GPGKEY --keyserver keyserver.ubuntu.com
+    pacman-key --recv-keys "$GPGKEY" --keyserver keyserver.ubuntu.com
     while [ $? -ne 0 ]; do
-        pacman-key --recv-keys $GPGKEY --keyserver keyserver.ubuntu.com
+        pacman-key --recv-keys "$GPGKEY" --keyserver keyserver.ubuntu.com
     done
-    pacman-key --lsign-key $GPGKEY
+    pacman-key --lsign-key "$GPGKEY"
 
 }
 
