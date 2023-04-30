@@ -2,14 +2,7 @@
 
 . utils/time_parser.sh
 
-my_pkgs=(
-    yay
-    paru
-    implay
-    linux-xanmod-anbox
-    linux-xanmod-anbox-headers
-    #linux-lqx
-)
+mapfile -t my_pkgs < my_pkgs
 TOTAL_SECONDS=0
 
 function build_package() {
