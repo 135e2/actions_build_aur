@@ -17,7 +17,10 @@ jobs:
         with:
           repository: 135e2/actions_build_aur
 
-      - name: Setup build environmnet
+      - name: Setup build environment
+        env:
+          REPO: "135e2"
+          GPGKEY: 0F43EA08654E5BCA
         run: ./prepare.sh
 
       - name: Dirty workaround for unsafe directory (Git v2.35.2)
@@ -29,19 +32,9 @@ jobs:
           submodules: recursive
 
       - name: Build packages
-        run: ./build.sh
-        
-      - name: Sign packages
         env:
+          GPGKEY: 0F43EA08654E5BCA
           GPG_PRIVATE_KEY_URL: ${{ secrets.GPG_PRIVATE_KEY_URL }}
           GPG_PRIVATE_KEY_PASSWORD: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD}}
-        run: ./sign.sh
-
-      - name: List packages
-        run: ls -1 /home/builduser/localrepo
-
-      - name: Transfer packages
-        env:
           RCLONE_CONFIG_URL: ${{ secrets.RCLONE_CONFIG_URL }}
-          #REMOTE_REPO: ${{ secrets.REMOTE_REPO }}
-        run: ./transfer.sh
+        run: ./main.sh
