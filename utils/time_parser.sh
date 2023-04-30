@@ -8,11 +8,5 @@ function time_parser() {
     local minutes=$((seconds / 60))
     seconds=$((input_seconds % 60))
 
-    if [ $hours -gt 0 ]; then
-        printf "%02d:%02d:%02d\n" $hours $minutes $seconds
-    elif [ $minutes -gt 0 ]; then
-        printf "%02d:%02d\n" $minutes $seconds
-    else
-        printf "%d" $seconds
-    fi
+    printf "%02d:%02d:%02d\n" $hours $minutes $seconds
 }
