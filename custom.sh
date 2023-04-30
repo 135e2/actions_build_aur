@@ -1,11 +1,15 @@
 #!/bin/bash
-set -euxo pipefail
+#shellcheck disable=SC2164
 
-if [[ build == "$1" ]]; then
+function local_custom_build() {
+    chmod a+w "custom/$1"
+    pushd "custom/$1" || error "No custom pkg called $1!"
     sudo -u builduser aur build --syncdeps --noconfirm --margs '--needed,--noprogressbar,--skipchecksums'
     popd
-elif [[ fetch == "$1" ]]; then
-    CURRENT_PKG="$2"
+}
+
+function fetch_build() {
+    CURRENT_PKG="$1"
     aur fetch "$CURRENT_PKG"
     chmod a+w "$CURRENT_PKG" # for builduser
     pushd "$CURRENT_PKG"
@@ -14,7 +18,4 @@ elif [[ fetch == "$1" ]]; then
     if [[ "" != "$aurdep" ]]; then
         sudo -u builduser aur sync "$aurdep" --no-view --no-confirm --sign
     fi
-elif [[ cd == "$1" ]]; then
-    chmod a+w "custom/$2"
-    pushd "custom/$2"
-fi
+}

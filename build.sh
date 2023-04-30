@@ -18,8 +18,8 @@ function build_package() {
     if [ -e "custom/$pkg.sh" ]; then
         "./custom/$pkg.sh"
     elif [ -d "custom/$pkg" ]; then
-        . "$H/custom.sh" cd "$pkg"
-        . "$H/custom.sh" build
+        . "$H/custom.sh"
+        local_custom_build "$pkg"
     else
         sudo -u builduser aur sync "$pkg" --no-view --no-confirm #--sign # --rm-deps
     fi
@@ -28,7 +28,6 @@ function build_package() {
     TOTAL_SECONDS+=SECONDS
     info "<<<<<<<<< $pkg built, time used: $(time_parser $SECONDS)."
 }
-
 
 function build() {
     # Setup makepkg conf
