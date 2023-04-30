@@ -13,7 +13,7 @@ my_pkgs=(
 
 function build_package() {
     local pkg="$1"
-    local SECONDS=0
+    local start_time=$(date +%s)
     info ">>>>>>>>> building $pkg"
     if [ -e "custom/$pkg.sh" ]; then
         "./custom/$pkg.sh"
@@ -23,6 +23,8 @@ function build_package() {
     else
         sudo -u builduser aur sync "$pkg" --no-view --no-confirm #--sign # --rm-deps
     fi
+    local end_time=$(date +%s)
+    local SECONDS=$((end_time - start_time))
     TOTAL_SECONDS+=SECONDS
     info "<<<<<<<<< $pkg built, time used: $(time_parser $SECONDS)."
 }
