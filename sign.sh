@@ -8,7 +8,7 @@ function sign() {
     gpg --import --pinentry-mode loopback --batch --passphrase "$GPG_PRIVATE_KEY_PASSWORD" private_key
     pushd /home/builduser/localrepo
     shopt -s globstar nullglob
-    for files in "$1"/*.pkg.tar.zst; do
+    for files in **/*.pkg.tar.zst; do
         info "Signing $files..."
         gpg --detach-sign --pinentry-mode loopback --batch --passphrase "$GPG_PRIVATE_KEY_PASSWORD" $files
     done
