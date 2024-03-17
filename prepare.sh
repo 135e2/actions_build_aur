@@ -30,7 +30,8 @@ function prepare() {
     info "Creating local repository..."
     printf "[%s]\nSigLevel = Optional TrustAll\nServer = file:///home/builduser/localrepo" "${REPO}" >> /etc/pacman.conf
     sudo -u builduser mkdir /home/builduser/localrepo
-    sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst"
+    sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst" aurutils/aurutils-*.pkg.tar.zst
+    sudo -u builduser cp -v aurutils/aurutils-*.pkg.tar.zst /home/builduser/localrepo/
     # Refreshing repo is nedded
     pacman -Sy
 
