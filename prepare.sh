@@ -32,6 +32,8 @@ function prepare() {
     sudo -u builduser mkdir /home/builduser/localrepo
     sudo -u builduser repo-add "/home/builduser/localrepo/$REPO.db.tar.zst" aurutils/aurutils-*.pkg.tar.zst
     sudo -u builduser cp -v aurutils/aurutils-*.pkg.tar.zst /home/builduser/localrepo/
+    # Disable sandbox for pacman 7
+    sed -i "s/#DisableSandbox/DisableSandbox/g" /etc/pacman.conf
     # Refreshing repo is nedded
     pacman -Sy
 
