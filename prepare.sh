@@ -34,6 +34,8 @@ function prepare() {
     sudo -u builduser cp -v aurutils/aurutils-*.pkg.tar.zst /home/builduser/localrepo/
     # Disable sandbox for pacman 7
     sed -i "s/#DisableSandbox/DisableSandbox/g" /etc/pacman.conf
+    # https://archlinux.org/news/manual-intervention-for-pacman-700-and-local-repositories-required/
+    sed -i "s/DownloadUser = alpm/DownloadUser = builduser/g" /etc/pacman.conf
     # Refreshing repo is nedded
     pacman -Sy
 
